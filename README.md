@@ -4,4 +4,8 @@ SIGGRAPH 2023
 
 R. Kenny Jones, Paul Guerrero, Niloy J. Mitra, and Daniel Ritchie 
 
-Code and paper coming soon!
+![Paper](https://rkjones4.github.io/pdf/shapeCoder.pdf)
+
+![Supplemental](https://rkjones4.github.io/pdf/shapeCoder_supplemental.pdf)
+
+Code coming soon!
