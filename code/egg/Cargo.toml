@@ -1,0 +1,20 @@
+[package]
+name = "sc-egraph"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "sc_egraph"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.15.1"
+features = ["extension-module"]
+
+[dependencies]
+egg = "0.7.1"
+ordered-float = "1"
+env_logger = {version = "0.7", default-features = false}
+coin_cbc = { version = "0.1.6"}
+gag="1.0.0"
+regex = "1"
