@@ -106,27 +106,7 @@ def sc_batch_match(R, targets, cme, mcmp, I, K):
     
     return matches
 
-# Logic to check for zero op expressions
-# E.g. a previous variable, or a constant is used
-def sc_hfe_zero_op(inp, ret_inds=False):
-
-    matches = []
-
-    targets = inp['targets']
-    cme = inp['cme']
-    mcmp = inp['mcmp']
-
-    for k,v in list(inp['pvars'].items()) + list(inp['st_consts'].items()):
-        sm, minds = sc_match(v, targets, cme, mcmp)
-        if sm:
-            if ret_inds:
-                matches.append((k, minds))
-            else:
-                matches.append(k)
-
-    return matches
-
-# TODO COMMENT
+# check if single previous variable can be used in input
 def sc_hfe_pvar(inp, ret_inds=False):
 
     matches = []
@@ -145,13 +125,14 @@ def sc_hfe_pvar(inp, ret_inds=False):
 
     return matches
 
-# TODO COMMENT
+#Check if constant can be used in input expression, use a lower cme
 def sc_hfe_sconst(inp, ret_inds=False):
 
     matches = []
 
     targets = inp['targets']
-    # TODO GENERALIZE
+
+    # override default
     cme = 0.01
     mcmp = inp['mcmp']
 

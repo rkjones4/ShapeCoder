@@ -98,7 +98,6 @@ def sc_has_fexpr_exp(S, tvalues, sparams):
     }
 
     # L has order of parametric expressions we check
-    # TODO CHECK
     
     L = []
     if len(inp['pvars']) > 0:
