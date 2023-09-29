@@ -86,7 +86,7 @@ To visualize how the discovered abstractions from a run are used, you can use th
 
 > python3 vis_res.py {path_to_results} {num_vis_per_abs} {out_dir}
 
-This will load the library and dataset from *path_to_results* (which should have both a end_lib.txt and end_data.txt file), and save *num_vis_per_abs* example uses of each abstraction into *out_dir*.  
+This will load the library and dataset from *path_to_results* (the saved results of a new run), which should have both a lib.pkl and data.pkl file. It will save *num_vis_per_abs* example uses of each abstraction into *out_dir*. Example outputs of this script are provided in the "ShapeCoder Results" section link.
 
 ## Directory structure
 

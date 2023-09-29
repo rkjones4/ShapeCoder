@@ -5,6 +5,7 @@ import prog_utils as pu
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import utils
 
 MODE = '3D'
 
@@ -16,10 +17,21 @@ import executor as ex
 
 # View results of a shapecoder run, by passing in last roun path, number of shapes to visualize for each abstraction, and where to save results
 def main(sc_load_path, num, save_path):
-        
-    L = dill.load(open(f'{sc_load_path}/lib.pkl', 'rb'))        
-    D = dill.load(open(f'{sc_load_path}/data.pkl', 'rb'))
 
+    try:
+        print("Trying to load pkl files")
+        L = dill.load(open(f'{sc_load_path}/lib.pkl', 'rb'))        
+        D = dill.load(open(f'{sc_load_path}/data.pkl', 'rb'))
+        print("Success")
+    except Exception as e:
+        print("Failed to load pkl files, defaulting to text for 3D domain, this may fail")
+        import library as lib
+        domain = 's3d'        
+        L = lib.makeLibrary(
+            ex, domain,
+        )
+        D = utils.vis_load_lib_and_data(sc_load_path, L)
+        
     vis_data = []
     
     for d in list(D):

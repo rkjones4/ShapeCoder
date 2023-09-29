@@ -235,7 +235,7 @@ def load_lib(
     # figure out which abstractions to keep
     keep = set()
     for name, sig in parse_abs(lib_load_path):
-        abst = nab.Abstraction(
+        abst = ab.Abstraction(
             sig,
             L,
             dargs
@@ -254,6 +254,37 @@ def load_lib(
 
     L.reset()
 
+class DummyVisData:
+    def __init__(self, prog):
+        self.inf_prog = prog
+        self.inf_vmap = {}
+        self.prims = []
+
+def dummy_union(L, sub_progs):
+    prog = L.lang.comb_progs(sub_progs)
+    dvd = DummyVisData(prog)
+    return dvd
+    
+def vis_load_lib_and_data(sc_load_path, L):
+    load_lib(sc_load_path, L)
+
+    D = []
+    cur = []
+    with open(f'{sc_load_path}/end_data.txt') as f:
+        for line in f:
+            if 'Data' in line:
+                if len(cur) > 0:
+                    D.append(dummy_union(L, cur))
+                cur = []
+                continue
+            else:
+                cur.append(line.strip())
+
+    if len(cur) > 0:
+        D.append(dummy_union(L, cur))
+
+    return D
+        
 # load library and data from file 
 def load_lib_and_data(sc_load_path, _L, canon_fn=None):
 
